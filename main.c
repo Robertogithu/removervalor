@@ -89,30 +89,48 @@ void remover(LISTA* l) {
 }
 
 void removerValor(LISTA* l, int valor) {
-  NODO* i = l->inicio;
-	
-	//printf("LISTA: \n\n");
-	
-	while (i == NULL) {
-		//printf("|_%d_|", i->valor);
+  NODO* atual = l->inicio;
+  NODO* anterior = NULL;
 
-		i = i->prox;
+  while (atual != NULL){
+      if(atual-> valor ==3){
+        if(atual->prox != NULL){
+          anterior->prox = atual->prox;
+        }
+        free(atual);
+      }
+      anterior = atual;
+      atual = atual->prox;
+  }  
+}
+
+int f1(NODO* lista){
+  return lista->valor;
+
 }
 
 int main() {
+
+  
 	LISTA lista;
 	
 	iniciarLista(&lista);
 	
-	inserir(&lista, 1);
 	inserir(&lista, 2);
-	inserir(&lista, 3);
+	inserir(&lista, 1);
+	inserir(&lista, 8);
+  inserir(&lista, 3);
 	
-	remover(&lista);
-  remover(&lista);
-  remover(&lista);
+  removerValor(&lista,  3);
+  
+
+	//remover(&lista);
+  //remover(&lista);
+  //remover(&lista);
 	
-	// reiniciarLista(&fila);
+	 //reiniciarLista(&fila);
 	
 	printLista(&lista);
+
+  
 }
