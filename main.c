@@ -64,7 +64,16 @@ void inserir(LISTA* l, int valor) {
 	
 	l->fim = novo;
 }
+void inserirValor(LISTA* lista, int posicao, int valor){
+  NODO* atual = lista->inicio;
+  int i = 0;
 
+  while(i <= posicao){
+    if(i == posicao) atual->valor = valor;
+    i++;
+    atual = atual->prox;
+  }
+}
 void remover(LISTA* l) {
   NODO* aux = l->inicio;
 	
@@ -87,22 +96,33 @@ void remover(LISTA* l) {
 	  }
   }
 }
-
 void removerValor(LISTA* l, int valor) {
   NODO* atual = l->inicio;
   NODO* anterior = NULL;
 
+  if(l->inicio->valor == valor) {
+    l->inicio = l->inicio->prox;
+    free(atual);
+    return;
+  }
+
   while (atual != NULL){
-      if(atual-> valor ==3){
-        if(atual->prox != NULL){
-          anterior->prox = atual->prox;
-        }
-        free(atual);
-      }
-      anterior = atual;
-      atual = atual->prox;
-  }  
+    if(atual->valor == valor){
+      anterior->prox = atual->prox;
+      free(atual);
+      return;
+    }
+    if(atual->prox == NULL){
+      printf("Valor não encontrado\n");
+      return;
+    }
+    anterior = atual;
+    atual = atual->prox;
+  }
 }
+
+
+ 
 
 int f1(NODO* lista){
   return lista->valor;
@@ -120,8 +140,8 @@ int main() {
 	inserir(&lista, 1);
 	inserir(&lista, 8);
   inserir(&lista, 3);
-	
-  removerValor(&lista,  3);
+	inserirValor(&lista, 3 ,10 );
+  removerValor(&lista, 8);
   
 
 	//remover(&lista);
@@ -131,6 +151,7 @@ int main() {
 	 //reiniciarLista(&fila);
 	
 	printLista(&lista);
+  
 
   
 }
