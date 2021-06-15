@@ -121,9 +121,6 @@ void removerValor(LISTA* l, int valor) {
   }
 }
 
-
- 
-
 int f1(NODO* lista){
   return lista->valor;
 
@@ -141,7 +138,7 @@ int main() {
 	inserir(&lista, 8);
   inserir(&lista, 3);
 	inserirValor(&lista, 3 ,10 );
-  removerValor(&lista, 8);
+  removerValor(&lista, 5);
   
 
 	//remover(&lista);
@@ -151,7 +148,5 @@ int main() {
 	 //reiniciarLista(&fila);
 	
 	printLista(&lista);
-  
-
-  
+ 
 }
